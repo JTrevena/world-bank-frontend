@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { useNavigate } from "react-router-dom";
 
-const ResponsiveAppBar = () => {
+function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   let navigate = useNavigate();
@@ -35,7 +35,7 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
-  function handleUserLogout(e) {
+  function handleUserLogout() {
     console.log("logging out");
     // logout functionality will go here once backend finished
   }
@@ -193,7 +193,7 @@ const ResponsiveAppBar = () => {
                 key={"logout"}
                 onClick={(e) => {
                   handleCloseUserMenu();
-                  handleUserLogout(e);
+                  handleUserLogout();
                 }}
               >
                 <Typography textAlign="center">logout</Typography>
@@ -204,5 +204,5 @@ const ResponsiveAppBar = () => {
       </Container>
     </AppBar>
   );
-};
-export default ResponsiveAppBar;
+}
+export default Header;
