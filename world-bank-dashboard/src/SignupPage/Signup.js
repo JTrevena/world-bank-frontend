@@ -1,7 +1,6 @@
 import React from "react";
 import "./Signup.css";
 import { Button, TextField } from "@mui/material";
-import LoadingButton from "@mui/lab/LoadingButton";
 
 export default function Signup(props) {
   return (
@@ -37,13 +36,7 @@ export default function Signup(props) {
           </div>
         </div>
         <div className="submit-btn">
-          <LoadingButton
-            size="small"
-            loadingIndicator="Create account"
-            variant="outlined"
-          >
-            Create account
-          </LoadingButton>
+          <Button variant="contained">Create account</Button>
         </div>
       </form>
     </div>
