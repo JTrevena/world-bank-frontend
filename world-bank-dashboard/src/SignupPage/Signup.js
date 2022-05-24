@@ -13,7 +13,7 @@ export default function Signup(props) {
 
   function handleSubmit(e) {
     if (passwordInput === passwordConfirmationInput) {
-      networking.createAccount(usernameInput, passwordInput); // function in Networking not complete yet
+      networking.createAccount(usernameInput, passwordInput);
     }
   }
 

@@ -3,12 +3,15 @@ export default class Networking {
   async createAccount(username, password) {
     const newUser = { username, password };
 
-    const response = await fetch("/create-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-    }); // waiting for for backend endpoint to be finalised. This is a placeholder
+    const response = await fetch(
+      "https://safe-harbor-88927.herokuapp.com/create-user",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      }
+    );
   }
 }
