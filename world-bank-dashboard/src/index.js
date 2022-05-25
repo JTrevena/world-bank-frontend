@@ -6,13 +6,7 @@ import Login from "./LoginPage/Login";
 import Signup from "./SignupPage/Signup";
 import History from "./HistoryPage/History";
 import reportWebVitals from "./reportWebVitals";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

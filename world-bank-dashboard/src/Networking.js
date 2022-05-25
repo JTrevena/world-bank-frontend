@@ -44,5 +44,6 @@ export default class Networking {
         "Content-Type": "application/json,",
       },
     });
+    return response;
   }
 }
