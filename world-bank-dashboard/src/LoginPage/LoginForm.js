@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
+import Networking from "../Networking.js";
 
 import "./LoginForm.css";
 
-export default function LoginForm() {
+export default function LoginForm(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const networking = new Networking();
+
+  function handleSubmitClick() {
+    networking.postUser(username, password);
+  }
+
   return (
     <div className="main-wrapper">
       <form id="login-user">
@@ -12,9 +22,10 @@ export default function LoginForm() {
             id="outlined-basic"
             label="Username"
             variant="outlined"
-            InputLabelProps={{
-              style: { color: "white" },
-            }}
+            onChange={(e) => setUsername(e.target.value)}
+            // InputLabelProps={{
+            //   style: { color: "white" },
+            // }}
           />
         </div>
         <div className="login-wrapper">
@@ -22,13 +33,16 @@ export default function LoginForm() {
             id="outlined-basic"
             label="Password"
             variant="outlined"
-            InputLabelProps={{
-              style: { color: "white" },
-            }}
+            onChange={(e) => setPassword(e.target.value)}
+            // InputLabelProps={{
+            //   style: { color: "white" },
+            // }}
           />
         </div>
         <div className="login-wrapper">
-          <Button variant="contained">Submit</Button>
+          <Button variant="contained" onClick={handleSubmitClick}>
+            Submit
+          </Button>
         </div>
       </form>
     </div>
