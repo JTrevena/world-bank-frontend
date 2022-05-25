@@ -3,19 +3,24 @@ export default class Networking {
   async createAccount(username, password) {
     const newUser = { username, password };
 
-    const response = await fetch(
-      "https://safe-harbor-88927.herokuapp.com/create-user",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      }
-    );
+    try {
+      const response = await fetch(
+        "https://safe-harbor-88927.herokuapp.com/create-user",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        }
+      );
+      return await response.json();
+    } catch (error) {
+      return { error: "failed to fetch" };
+    }
   }
 
-  async postUser(username, password) {
+  async userLoginAttempt(username, password) {
     const userLoginDetails = { username, password };
 
     await fetch(`https://safe-harbor-88927.herokuapp.com/login`, {
