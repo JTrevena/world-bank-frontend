@@ -13,7 +13,8 @@ export default class Networking {
         body: JSON.stringify(newUser),
       }
     );
-    
+  }
+
   async postUser(username, password) {
     const userLoginDetails = { username, password };
 
