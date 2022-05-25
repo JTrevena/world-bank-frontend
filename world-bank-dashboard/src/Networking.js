@@ -13,6 +13,7 @@ export default class Networking {
         body: JSON.stringify(newUser),
       }
     );
+    return response;
   }
 
   async postUser(username, password) {
@@ -39,5 +40,6 @@ export default class Networking {
         "Content-Type": "application/json,",
       },
     });
+    return response;
   }
 }
