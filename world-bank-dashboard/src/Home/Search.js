@@ -13,6 +13,7 @@ import Networking from "../Networking";
 import indicators from "../data/indicators.json";
 import countries from "../data/countries.json";
 import "./Search.css";
+import readCookieValue from "../italia.js";
 
 export default function Search(props) {
   const [startYear, setStartYear] = useState("");
@@ -35,7 +36,7 @@ export default function Search(props) {
   }
 
   async function handleSearch() {
-    const sessionID = document.cookie.split("=")[1];
+    const sessionID = readCookieValue("sessionID");
     const data = await networking.searchQuery(
       country.countryname,
       indicator.indicatorname,

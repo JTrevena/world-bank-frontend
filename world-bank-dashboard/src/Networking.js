@@ -1,3 +1,5 @@
+import readCookieValue from "./italia.js";
+
 export default class Networking {
   //try and write any fetch request functions in here
   async createAccount(username, password) {
@@ -56,7 +58,7 @@ export default class Networking {
   }
 
   async logUserOut() {
-    const sessionID = document.cookie.split("=")[1];
+    const sessionID = readCookieValue("sessionID");
     const response = await fetch(
       `https://safe-harbor-88927.herokuapp.com/logout?sessionID=${sessionID}`,
       {
@@ -66,6 +68,14 @@ export default class Networking {
           "Content-Type": "application/json",
         },
       }
+    );
+    return await response.json();
+  }
+
+  async verifyUserSession() {
+    const sessionID = readCookieValue("sessionID");
+    const response = await fetch(
+      `https://safe-harbor-88927.herokuapp.com/verify-session?sessionID=${sessionID}`
     );
     return await response.json();
   }
