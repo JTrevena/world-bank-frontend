@@ -1,19 +1,42 @@
 import React, { useState } from "react";
 import "./Signup.css";
 import Networking from "../Networking.js";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Alert } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup(props) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [passwordConfirmationInput, setPasswordConfirmationInput] =
     useState("");
+  const [accountCreationAttempts, setAccountCreationAttempts] = useState(0);
+  const [accountCreationSuccess, setAccountCreationSuccess] = useState(false);
+  let navigate = useNavigate();
 
   const networking = new Networking();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
+    setAccountCreationAttempts(accountCreationAttempts + 1);
     if (passwordInput === passwordConfirmationInput) {
-      networking.createAccount(usernameInput, passwordInput);
+      const response = await networking.createAccount(
+        usernameInput,
+        passwordInput
+      );
+      response.error
+        ? setAccountCreationSuccess(false)
+        : setAccountCreationSuccess(true);
+    }
+  }
+
+  function displayResponseMessage() {
+    console.log(accountCreationSuccess);
+    if (accountCreationAttempts > 0) {
+      if (!accountCreationSuccess) {
+        return <Alert severity="error">Account could not be created</Alert>;
+      } else {
+        setTimeout(() => navigate("/"), 500);
+        return <Alert severity="success">Account created</Alert>;
+      }
     }
   }
 
@@ -56,9 +79,12 @@ export default function Signup(props) {
           </div>
         </div>
         <div className="submit-btn">
-          <Button variant="contained" onSubmit={(e) => handleSubmit(e)}>
+          <Button variant="contained" onClick={(e) => handleSubmit(e)}>
             Create account
           </Button>
+        </div>
+        <div className="account-creation-success-error-message">
+          {displayResponseMessage()}
         </div>
       </form>
     </div>

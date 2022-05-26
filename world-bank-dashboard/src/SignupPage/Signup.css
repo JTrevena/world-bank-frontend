@@ -7,8 +7,6 @@
 .password-wrapper {
   display: flex;
   padding: 2%;
-  justify-content: center;
-  flex-direction: column;
 }
 
 .page-wrapper {
@@ -20,4 +18,15 @@
 
 .password-box {
   margin: 2%;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.account-creation-success-error-message {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
 }
