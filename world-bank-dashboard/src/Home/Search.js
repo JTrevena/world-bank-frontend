@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import Networking from "../Networking";
 import indicators from "../data/indicators.json";
+import countries from "../data/countries.json";
 import "./Search.css";
 
 export default function Search(props) {
@@ -18,7 +19,8 @@ export default function Search(props) {
   const [endYear, setEndYear] = useState("");
   const [country, setCountry] = useState("");
   const [indicator, setIndicator] = useState("");
-  const options = indicators["results"];
+  const indicatorOptions = indicators["results"];
+  const countryOptions = countries["results"];
 
   const networking = new Networking();
 
@@ -46,26 +48,32 @@ export default function Search(props) {
     <div className="main-wrapper">
       <div className="search-form-wrapper">
         <form id="search-query">
-          <TextField
-            id="outlined-basic"
-            label="Country"
-            variant="outlined"
-            helperText="Please enter your country"
-            onChange={(e) => setCountry(e.target.value)}
-          />
-
           <Autocomplete
             disablePortal
-            id="combo-box-demo"
-            options={options}
-            getOptionLabel={(option) => option.indicatorname}
+            id="country-select"
+            options={countryOptions}
+            getOptionLabel={(option) => option.countryname || [""]}
+            value={country}
+            onChange={(e, newInputValue) => {
+              setCountry(newInputValue);
+            }}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Countries" />
+            )}
+          />
+          <Autocomplete
+            disablePortal
+            id="indicator-select"
+            options={indicatorOptions}
+            getOptionLabel={(option) => option.indicatorname || [""]}
             value={indicator}
             onChange={(e, newInputValue) => {
               setIndicator(newInputValue);
             }}
             sx={{ width: 300 }}
             renderInput={(params) => (
-              <TextField {...params} label="Indicator" />
+              <TextField {...params} label="Indicators" />
             )}
           />
           <FormControl sx={{ minWidth: 100 }}>
