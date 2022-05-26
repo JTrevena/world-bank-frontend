@@ -38,11 +38,13 @@ export default class Networking {
     if (data.response) return data.response;
     else if (data.error) return data;
   }
-  async searchQuery(country, indicator, startYear, endYear) {
+  async searchQuery(country, indicator, startYear, endYear, sessionID) {
     let url = `https://safe-harbor-88927.herokuapp.com/results?country=${country}`;
     if (indicator) url += `&indicator=${encodeURIComponent(indicator)}`;
     if (startYear) url += `&startYear=${startYear}`;
     if (endYear) url += `&endYear=${endYear}`;
+    url += `&sessionID=${sessionID}`;
+    console.log(url);
     const response = await fetch(url, {
       method: "GET",
       credentials: "include",

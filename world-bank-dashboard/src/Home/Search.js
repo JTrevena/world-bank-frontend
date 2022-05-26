@@ -35,12 +35,15 @@ export default function Search(props) {
   }
 
   async function handleSearch() {
+    const sessionID = document.cookie.split("=")[1];
     const data = await networking.searchQuery(
       country.countryname,
       indicator.indicatorname,
       startYear,
-      endYear
+      endYear,
+      sessionID
     );
+
     props.acquireResults(data);
   }
 
