@@ -23,14 +23,20 @@ export default class Networking {
   async userLoginAttempt(username, password) {
     const userLoginDetails = { username, password };
 
-    await fetch(`https://safe-harbor-88927.herokuapp.com/login`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userLoginDetails),
-    });
+    const response = await fetch(
+      `https://safe-harbor-88927.herokuapp.com/login`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userLoginDetails),
+      }
+    );
+    const data = await response.json();
+    if (data.response) return data.response;
+    else if (data.error) return data;
   }
   async searchQuery(country, indicator, startYear, endYear) {
     let url = `https://safe-harbor-88927.herokuapp.com/results?country=${country}`;
