@@ -54,4 +54,19 @@ export default class Networking {
     });
     return await response.json();
   }
+
+  async logUserOut() {
+    const sessionID = document.cookie.split("=")[1];
+    const response = await fetch(
+      `https://safe-harbor-88927.herokuapp.com/logout?sessionID=${sessionID}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return await response.json();
+  }
 }
