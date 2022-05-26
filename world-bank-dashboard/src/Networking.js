@@ -23,7 +23,7 @@ export default class Networking {
   async userLoginAttempt(username, password) {
     const userLoginDetails = { username, password };
 
-    await fetch(`http://localhost:8080/login`, {
+    await fetch(`https://safe-harbor-88927.herokuapp.com/login`, {
       method: "POST",
       credentials: "include",
       headers: {
