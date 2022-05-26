@@ -1,9 +1,6 @@
-.search-form-wrapper {
+.results-wrapper {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.5%;
-  height: 100%;
+  /* margin-top: 10%; */
 }

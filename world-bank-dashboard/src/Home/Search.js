@@ -7,20 +7,24 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Autocomplete,
 } from "@mui/material";
 import Networking from "../Networking";
+import indicators from "../data/indicators.json";
+import "./Search.css";
 
 export default function Search(props) {
   const [startYear, setStartYear] = useState("");
   const [endYear, setEndYear] = useState("");
   const [country, setCountry] = useState("");
   const [indicator, setIndicator] = useState("");
+  const options = indicators["results"];
 
   const networking = new Networking();
 
   function yearButtons() {
     let years = [];
-    for (let i = 1960; i < 2023; i++) {
+    for (let i = 1960; i < 2016; i++) {
       years.unshift(i);
     }
     return years.map((year) => {
@@ -28,9 +32,16 @@ export default function Search(props) {
     });
   }
 
-  function handleSearch() {
-    networking.searchQuery(country, indicator, startYear, endYear);
+  async function handleSearch() {
+    const data = await networking.searchQuery(
+      country,
+      indicator.indicatorname,
+      startYear,
+      endYear
+    );
+    props.acquireResults(data);
   }
+
   return (
     <div className="main-wrapper">
       <div className="search-form-wrapper">
@@ -41,19 +52,21 @@ export default function Search(props) {
             variant="outlined"
             helperText="Please enter your country"
             onChange={(e) => setCountry(e.target.value)}
-            // InputLabelProps={{
-            //   style: { color: "white" },
-            // }}
           />
-          <TextField
-            id="outlined-basic"
-            label="Indicators"
-            variant="outlined"
-            helperText="Please enter your indicators"
-            onChange={(e) => setIndicator(e.target.value)}
-            // InputLabelProps={{
-            //   style: { color: "white" },
-            // }}
+
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={options}
+            getOptionLabel={(option) => option.indicatorname}
+            value={indicator}
+            onChange={(e, newInputValue) => {
+              setIndicator(newInputValue);
+            }}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Indicator" />
+            )}
           />
           <FormControl sx={{ minWidth: 100 }}>
             <InputLabel id="start-year">Year</InputLabel>
