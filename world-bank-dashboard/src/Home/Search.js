@@ -36,7 +36,7 @@ export default function Search(props) {
 
   async function handleSearch() {
     const data = await networking.searchQuery(
-      country,
+      country.countryname,
       indicator.indicatorname,
       startYear,
       endYear

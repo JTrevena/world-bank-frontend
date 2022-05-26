@@ -34,7 +34,7 @@ export default function Signup(props) {
       if (!accountCreationSuccess) {
         return <Alert severity="error">Account could not be created</Alert>;
       } else {
-        setTimeout(() => navigate("/"), 500);
+        setTimeout(() => navigate("/login"), 500);
         return <Alert severity="success">Account created</Alert>;
       }
     }
