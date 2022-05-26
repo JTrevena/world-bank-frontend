@@ -1,16 +1,6 @@
-.search-form-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5%;
-  height: 100%;
-}
-
 .results-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
+  /* margin-top: 10%; */
 }

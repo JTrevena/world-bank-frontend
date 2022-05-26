@@ -34,7 +34,7 @@ export default class Networking {
   }
   async searchQuery(country, indicator, startYear, endYear) {
     let url = `https://safe-harbor-88927.herokuapp.com/results?country=${country}`;
-    if (indicator) url += `&indicator=${indicator}`;
+    if (indicator) url += `&indicator=${encodeURIComponent(indicator)}`;
     if (startYear) url += `&startYear=${startYear}`;
     if (endYear) url += `&endYear=${endYear}`;
     const response = await fetch(url, {

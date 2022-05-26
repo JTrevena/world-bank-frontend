@@ -10,4 +10,5 @@ yarn add @mui/material @emotion/react @emotion/styled
 yarn add @mui/lab
 yarn add @material-ui/icons
 yarn add @mui/icons-material
+npm install recharts --force
 ```
