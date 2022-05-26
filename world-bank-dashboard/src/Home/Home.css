@@ -7,3 +7,10 @@
   padding: 0.5%;
   height: 100%;
 }
+
+.results-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+}

@@ -28,9 +28,11 @@ export default function Search(props) {
     });
   }
 
-  function handleSearch() {
-    networking.searchQuery(country, indicator, startYear, endYear);
+  async function handleSearch() {
+    const data = networking.searchQuery(country, indicator, startYear, endYear);
+    props.acquireResults(data);
   }
+
   return (
     <div className="main-wrapper">
       <div className="search-form-wrapper">
@@ -41,9 +43,6 @@ export default function Search(props) {
             variant="outlined"
             helperText="Please enter your country"
             onChange={(e) => setCountry(e.target.value)}
-            // InputLabelProps={{
-            //   style: { color: "white" },
-            // }}
           />
           <TextField
             id="outlined-basic"
@@ -51,9 +50,6 @@ export default function Search(props) {
             variant="outlined"
             helperText="Please enter your indicators"
             onChange={(e) => setIndicator(e.target.value)}
-            // InputLabelProps={{
-            //   style: { color: "white" },
-            // }}
           />
           <FormControl sx={{ minWidth: 100 }}>
             <InputLabel id="start-year">Year</InputLabel>
