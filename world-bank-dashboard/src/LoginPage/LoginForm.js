@@ -10,8 +10,8 @@ export default function LoginForm(props) {
 
   const networking = new Networking();
 
-  function handleSubmitClick() {
-    networking.userLoginAttempt(username, password);
+  async function handleSubmitClick() {
+    await networking.userLoginAttempt(username, password);
   }
 
   return (
