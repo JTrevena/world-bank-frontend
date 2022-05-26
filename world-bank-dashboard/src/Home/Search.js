@@ -93,11 +93,11 @@ export default function Search(props) {
             </Select>
           </FormControl>
         </form>
-      </div>
-      <div className="search-form-wrapper">
-        <Button variant="contained" onClick={handleSearch}>
-          Search
-        </Button>
+        <div className="search-btn">
+          <Button variant="contained" onClick={handleSearch}>
+            Search
+          </Button>
+        </div>
       </div>
     </div>
   );

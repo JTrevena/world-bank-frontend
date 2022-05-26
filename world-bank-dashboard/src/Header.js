@@ -41,11 +41,11 @@ function Header() {
   }
 
   function handleSearchButtonClick() {
-    setTimeout(navigate("/"), 500);
+    setTimeout(() => navigate("/"), 250);
   }
 
   function handleHistoryButtonClick() {
-    setTimeout(() => navigate("/history"), 500);
+    setTimeout(() => navigate("/history"), 250);
   }
 
   return (
