@@ -13,12 +13,14 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { useNavigate } from "react-router-dom";
+import Networking from "./Networking.js";
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   let navigate = useNavigate();
   const username = "Username"; //TO DO - logged in users username will go here dynamically
+  const networking = new Networking();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,17 +37,16 @@ function Header() {
     setAnchorElUser(null);
   };
 
-  function handleUserLogout() {
-    console.log("logging out");
-    // logout functionality will go here once backend finished
+  async function handleUserLogout() {
+    await networking.logUserOut();
   }
 
   function handleSearchButtonClick() {
-    setTimeout(navigate("/"), 500);
+    setTimeout(() => navigate("/"), 250);
   }
 
   function handleHistoryButtonClick() {
-    setTimeout(() => navigate("/history"), 500);
+    setTimeout(() => navigate("/history"), 250);
   }
 
   return (
