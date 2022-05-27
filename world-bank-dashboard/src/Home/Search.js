@@ -13,7 +13,9 @@ import Networking from "../Networking";
 import indicators from "../data/indicators.json";
 import countries from "../data/countries.json";
 import "./Search.css";
+import readCookieValue from "../readCookieValue.js";
 import SearchIcon from "@mui/icons-material/Search";
+
 export default function Search(props) {
   const [startYear, setStartYear] = useState("");
   const [endYear, setEndYear] = useState("");
@@ -35,7 +37,7 @@ export default function Search(props) {
   }
 
   async function handleSearch() {
-    const sessionID = document.cookie.split("=")[1];
+    const sessionID = readCookieValue("sessionID");
     const data = await networking.searchQuery(
       country.countryname,
       indicator.indicatorname,

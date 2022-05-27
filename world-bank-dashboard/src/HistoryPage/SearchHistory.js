@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import readCookieValue from "../readCookieValue";
+import Networking from "../Networking";
 
 export default function SearchHistory() {
   const [searchHistory, setSearchHistory] = useState([]);
   let navigate = useNavigate();
+  const networking = new Networking();
+
+  useEffect(() => {
+    checkUserSession();
+  });
+
+  async function checkUserSession() {
+    const res = await networking.verifyUserSession();
+    const userLoggedIn = res.response;
+    if (!userLoggedIn) navigate("/login");
+    return userLoggedIn;
+  }
 
   function handleViewClick() {
-    setTimeout(() => navigate("/"), 500);
+    setTimeout(() => navigate("/"), 250);
   }
 
   useEffect(() => {
@@ -18,10 +32,11 @@ export default function SearchHistory() {
   }, []);
 
   async function fetchData() {
+    const sessionID = readCookieValue("sessionID");
     let response = await fetch(
-      `https://safe-harbor-88927.herokuapp.com/history`
+      `https://safe-harbor-88927.herokuapp.com/history?${sessionID}`
     );
-    let json = await response.json();
+    const json = await response.json();
     setSearchHistory(json);
   }
 
