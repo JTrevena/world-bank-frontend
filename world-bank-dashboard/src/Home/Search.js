@@ -13,7 +13,7 @@ import Networking from "../Networking";
 import indicators from "../data/indicators.json";
 import countries from "../data/countries.json";
 import "./Search.css";
-import readCookieValue from "../italia.js";
+import readCookieValue from "../readCookieValue.js";
 
 export default function Search(props) {
   const [startYear, setStartYear] = useState("");

@@ -1,4 +1,4 @@
-import readCookieValue from "./italia.js";
+import readCookieValue from "./readCookieValue.js";
 
 export default class Networking {
   //try and write any fetch request functions in here
@@ -75,7 +75,13 @@ export default class Networking {
   async verifyUserSession() {
     const sessionID = readCookieValue("sessionID");
     const response = await fetch(
-      `https://safe-harbor-88927.herokuapp.com/verify-session?sessionID=${sessionID}`
+      `https://safe-harbor-88927.herokuapp.com/verify-session?sessionID=${sessionID}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
     return await response.json();
   }

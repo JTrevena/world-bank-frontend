@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import readCookieValue from "../italia";
+import readCookieValue from "../readCookieValue";
 import Networking from "../Networking";
 
 export default function SearchHistory() {
