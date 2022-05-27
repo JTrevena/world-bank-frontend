@@ -7,3 +7,13 @@
   padding: 0.5%;
   margin-top: 5%;
 }
+
+.search-form-btn {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: fit-content;
+  padding: 0.5%;
+  margin-top: 5%;
+}
