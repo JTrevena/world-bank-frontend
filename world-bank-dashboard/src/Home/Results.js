@@ -42,8 +42,9 @@ export default function Results(props) {
           left: 50,
           bottom: 5,
         }}
+        opacity="90%"
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 3" fill="#FDF8EC" />
         <XAxis dataKey="year" />
         <YAxis
           type="number"

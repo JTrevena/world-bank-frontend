@@ -85,4 +85,13 @@ export default class Networking {
     );
     return await response.json();
   }
+
+  async getUserHistory() {
+    const sessionID = readCookieValue("sessionID");
+    let response = await fetch(
+      `https://safe-harbor-88927.herokuapp.com/history?sessionID=${sessionID}`
+    );
+    const history = await response.json();
+    return history;
+  }
 }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
+import HistoryCard from "./HistoryCard";
 import { useNavigate } from "react-router-dom";
-import readCookieValue from "../readCookieValue";
 import Networking from "../Networking";
+import { Stack, Box } from "@mui/material";
 
 export default function SearchHistory() {
   const [searchHistory, setSearchHistory] = useState([]);
@@ -20,8 +20,8 @@ export default function SearchHistory() {
     return userLoggedIn;
   }
 
-  function handleViewClick() {
-    setTimeout(() => navigate("/"), 250);
+  function handleViewClick(e) {
+    setTimeout(() => navigate("/", { state: searchHistory[e.target.id] }), 250);
   }
 
   useEffect(() => {
@@ -29,31 +29,38 @@ export default function SearchHistory() {
       await fetchData();
     }
     fetchingData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function fetchData() {
-    const sessionID = readCookieValue("sessionID");
-    let response = await fetch(
-      `https://safe-harbor-88927.herokuapp.com/history?${sessionID}`
-    );
-    const json = await response.json();
-    setSearchHistory(json);
+    const history = (await networking.getUserHistory()).response;
+    setSearchHistory(history);
   }
 
   function searchHistoryDisplay() {
-    searchHistory.forEach((search) => {
+    return searchHistory.map((historyItem, i) => {
       return (
-        <div>
-          <h3>
-            ${search.indicator} for ${search.country} from ${search.startYear}{" "}
-            to ${search.endYear}
-          </h3>
-          <Button variant="contained" onClick={handleViewClick}>
-            View
-          </Button>
-        </div>
+        <HistoryCard
+          key={i}
+          index={i}
+          handleViewClick={handleViewClick}
+          historyItem={historyItem}
+        />
       );
     });
   }
-  return <div>{searchHistoryDisplay}</div>;
+  return (
+    <div>
+      <Box>
+        <Stack
+          direction="column"
+          spacing={1}
+          alignItems="center"
+          justifyContent="center"
+        >
+          {searchHistoryDisplay()}
+        </Stack>
+      </Box>
+    </div>
+  );
 }

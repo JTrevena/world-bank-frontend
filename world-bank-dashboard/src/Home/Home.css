@@ -4,3 +4,8 @@
   align-items: center;
   margin-top: 10%;
 }
+
+.graph-title {
+  display: flex;
+  justify-content: center;
+}
