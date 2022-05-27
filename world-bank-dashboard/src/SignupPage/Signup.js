@@ -3,6 +3,7 @@ import "./Signup.css";
 import Networking from "../Networking.js";
 import { Button, TextField, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 export default function Signup(props) {
   const [usernameInput, setUsernameInput] = useState("");
@@ -42,16 +43,20 @@ export default function Signup(props) {
 
   return (
     <div className="page-wrapper">
-      <h1>Create an account!</h1>
+      <h1 className="page-title">Create an account!</h1>
       <form className="signup-form">
         <div className="username-wrapper">
           <TextField
             required
             id="outlined-required"
-            label="username"
+            label="Username"
             variant="outlined"
             value={usernameInput}
             onChange={(e) => setUsernameInput(e.target.value)}
+            style={{
+              backgroundColor: "white",
+              opacity: "90%",
+            }}
           />
         </div>
         <div className="password-wrapper">
@@ -59,27 +64,39 @@ export default function Signup(props) {
             <TextField
               required
               id="outlined-required"
-              label="password"
+              label="Password"
               type="password"
               variant="outlined"
               value={passwordInput}
               onChange={(e) => setPasswordInput(e.target.value)}
+              style={{
+                backgroundColor: "white",
+                opacity: "90%",
+              }}
             />
           </div>
           <div className="password-box">
             <TextField
               required
               id="outlined-required"
-              label="confirm password"
+              label="Confirm password"
               type="password"
               variant="outlined"
               value={passwordConfirmationInput}
               onChange={(e) => setPasswordConfirmationInput(e.target.value)}
+              style={{
+                backgroundColor: "white",
+                opacity: "90%",
+              }}
             />
           </div>
         </div>
         <div className="submit-btn">
-          <Button variant="contained" onClick={(e) => handleSubmit(e)}>
+          <Button
+            variant="contained"
+            onClick={(e) => handleSubmit(e)}
+            endIcon={<AccountBoxIcon />}
+          >
             Create account
           </Button>
         </div>

@@ -1,11 +1,15 @@
-.login-wrapper {
+.login-user {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   padding: 0.5%;
-  height: 100%;
+  margin-top: 15%;
+}
+
+.title {
+  color: black;
+  text-decoration: underline;
 }
 
 .main-wrapper {

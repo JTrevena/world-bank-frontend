@@ -1,23 +1,33 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.page-title {
+  color: black;
+  text-decoration: underline;
+}
+
 .username-wrapper {
   display: flex;
+  flex-direction: column;
   padding: 2%;
   justify-content: center;
 }
 
 .password-wrapper {
   display: flex;
+  flex-direction: column;
+  margin-left: 0%;
   padding: 2%;
 }
 
 .page-wrapper {
+  margin-top: 15%;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.password-box {
-  margin: 2%;
 }
 
 .submit-btn {
