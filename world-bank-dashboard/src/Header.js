@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,18 +14,18 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { useNavigate } from "react-router-dom";
 import Networking from "./Networking.js";
 import "./Header.css";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   let navigate = useNavigate();
-  const username = "Username"; //TO DO - logged in users username will go here dynamically
   const networking = new Networking();
 
-  const handleOpenNavMenu = (event) => {
+  const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu = event => {
     setAnchorElUser(event.currentTarget);
   };
 
@@ -56,9 +55,7 @@ function Header() {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <AccountBalanceIcon
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-            />
+            <AccountBalanceIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
             <Typography
               variant="h6"
               noWrap
@@ -108,7 +105,7 @@ function Header() {
               >
                 <MenuItem
                   key={"Search"}
-                  onClick={(e) => {
+                  onClick={e => {
                     handleCloseNavMenu();
                     handleSearchButtonClick();
                   }}
@@ -117,7 +114,7 @@ function Header() {
                 </MenuItem>
                 <MenuItem
                   key={"History"}
-                  onClick={(e) => {
+                  onClick={e => {
                     handleCloseNavMenu();
                     handleHistoryButtonClick();
                   }}
@@ -126,9 +123,7 @@ function Header() {
                 </MenuItem>
               </Menu>
             </Box>
-            <AccountBalanceIcon
-              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-            />
+            <AccountBalanceIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
             <Typography
               variant="h5"
               noWrap
@@ -151,7 +146,7 @@ function Header() {
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Button
                 key={"Search"}
-                onClick={(e) => {
+                onClick={e => {
                   handleCloseNavMenu();
                   handleSearchButtonClick();
                 }}
@@ -161,7 +156,7 @@ function Header() {
               </Button>
               <Button
                 key={"History"}
-                onClick={(e) => {
+                onClick={e => {
                   handleCloseNavMenu();
                   handleHistoryButtonClick();
                 }}
@@ -174,10 +169,7 @@ function Header() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    alt={`${username}`}
-                    src="/static/images/avatar/2.jpg"
-                  />
+                  <LogoutIcon sx={{ color: "white" }} />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -198,7 +190,7 @@ function Header() {
               >
                 <MenuItem
                   key={"logout"}
-                  onClick={(e) => {
+                  onClick={e => {
                     handleCloseUserMenu();
                     handleUserLogout();
                   }}
