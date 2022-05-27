@@ -86,7 +86,7 @@ export default function Search(props) {
               renderInput={params => (
                 <TextField
                   {...params}
-                  label="Country"
+                  label="Country (Required)"
                   variant="outlined"
                   style={{
                     backgroundColor: "white",
@@ -110,7 +110,7 @@ export default function Search(props) {
               renderInput={params => (
                 <TextField
                   {...params}
-                  label="Indicator"
+                  label="Indicator (Random if left blank)"
                   variant="outlined"
                   style={{
                     backgroundColor: "white",
