@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField, Alert } from "@mui/material";
 import Networking from "../Networking.js";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import "./LoginForm.css";
 import { useNavigate } from "react-router-dom";
 
@@ -32,26 +33,39 @@ export default function LoginForm(props) {
 
   return (
     <div className="main-wrapper">
-      <form id="login-user">
-        <div className="login-wrapper">
+      <form className="login-user">
+        <h1 className="title">Sign in to World Bank</h1>
+        <div className="username-wrapper">
           <TextField
             id="outlined-basic"
             label="Username"
             variant="outlined"
             onChange={(e) => setUsername(e.target.value)}
+            style={{
+              backgroundColor: "white",
+              opacity: "90%",
+            }}
           />
         </div>
-        <div className="login-wrapper">
+        <div className="password-wrapper">
           <TextField
             id="outlined-basic"
             label="Password"
             variant="outlined"
             onChange={(e) => setPassword(e.target.value)}
+            style={{
+              backgroundColor: "white",
+              opacity: "90%",
+            }}
           />
         </div>
-        <div className="login-wrapper">
-          <Button variant="contained" onClick={handleSubmitClick}>
-            Submit
+        <div className="btn-wrapper">
+          <Button
+            variant="contained"
+            onClick={handleSubmitClick}
+            endIcon={<AccountBalanceIcon />}
+          >
+            Sign In
           </Button>
         </div>
       </form>

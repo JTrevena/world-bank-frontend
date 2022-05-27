@@ -14,6 +14,7 @@ import indicators from "../data/indicators.json";
 import countries from "../data/countries.json";
 import "./Search.css";
 import readCookieValue from "../readCookieValue.js";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function Search(props) {
   const [startYear, setStartYear] = useState("");
@@ -51,7 +52,7 @@ export default function Search(props) {
   return (
     <div className="main-wrapper">
       <div className="search-form-wrapper">
-        <form id="search-query">
+        <div className="country-select">
           <Autocomplete
             disablePortal
             id="country-select"
@@ -63,9 +64,19 @@ export default function Search(props) {
             }}
             sx={{ width: 300 }}
             renderInput={(params) => (
-              <TextField {...params} label="Countries" />
+              <TextField
+                {...params}
+                label="Country"
+                variant="outlined"
+                style={{
+                  backgroundColor: "white",
+                  opacity: "90%",
+                }}
+              />
             )}
           />
+        </div>
+        <div className="indicator-select">
           <Autocomplete
             disablePortal
             id="indicator-select"
@@ -77,39 +88,63 @@ export default function Search(props) {
             }}
             sx={{ width: 300 }}
             renderInput={(params) => (
-              <TextField {...params} label="Indicators" />
+              <TextField
+                {...params}
+                label="Indicator"
+                variant="outlined"
+                style={{
+                  backgroundColor: "white",
+                  opacity: "90%",
+                }}
+              />
             )}
           />
+        </div>
+        <div className="start-year">
           <FormControl sx={{ minWidth: 100 }}>
-            <InputLabel id="start-year">Year</InputLabel>
+            <InputLabel id="start-year">Start Year</InputLabel>
             <Select
               labelId="start-year"
               id="start-year"
               label="Year"
               onChange={(e) => setStartYear(e.target.value)}
               defaultValue=""
+              style={{
+                backgroundColor: "white",
+                opacity: "90%",
+              }}
             >
               {yearButtons()}
             </Select>
           </FormControl>
+        </div>
+        <div className="end-year">
           <FormControl sx={{ minWidth: 100 }}>
-            <InputLabel id="end-year">Year</InputLabel>
+            <InputLabel id="end-year">End Year</InputLabel>
             <Select
               labelId="end-year"
               id="end-year"
               label="Year"
               onChange={(e) => setEndYear(e.target.value)}
               defaultValue=""
+              style={{
+                backgroundColor: "white",
+                opacity: "90%",
+              }}
             >
               {yearButtons()}
             </Select>
           </FormControl>
-        </form>
-        <div className="search-btn">
-          <Button variant="contained" onClick={handleSearch}>
-            Search
-          </Button>
         </div>
+      </div>
+      <div className="search-form-wrapper">
+        <Button
+          variant="contained"
+          onClick={handleSearch}
+          endIcon={<SearchIcon />}
+        >
+          Search
+        </Button>
       </div>
     </div>
   );
