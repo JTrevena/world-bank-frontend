@@ -1,29 +1,19 @@
 .search-form-wrapper {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  width: fit-content;
-  padding: 0.5%;
-  margin-top: 5%;
-}
-
-.search-form-btn {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  width: fit-content;
-  padding: 0.5%;
-  margin-top: 5%;
-}
-
-.clear-btn {
-  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  width: fit-content;
+  width: 100%;
   padding: 0.5%;
-  margin-top: 0%;
+}
+
+.buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5%;
+}
+
+.fields-wrapper {
+  display: flex;
+  flex-direction: row;
 }
