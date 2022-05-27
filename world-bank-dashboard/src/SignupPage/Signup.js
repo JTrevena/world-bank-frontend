@@ -8,7 +8,8 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 export default function Signup(props) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [passwordConfirmationInput, setPasswordConfirmationInput] = useState("");
+  const [passwordConfirmationInput, setPasswordConfirmationInput] =
+    useState("");
   const [accountCreationAttempts, setAccountCreationAttempts] = useState(0);
   const [accountCreationSuccess, setAccountCreationSuccess] = useState(false);
   let navigate = useNavigate();
@@ -16,20 +17,24 @@ export default function Signup(props) {
   const networking = new Networking();
 
   async function handleSubmit(e) {
-    setAccountCreationAttempts(accountCreationAttempts + 1);
     if (passwordInput === passwordConfirmationInput) {
-      const response = await networking.createAccount(usernameInput, passwordInput);
-      response.error ? setAccountCreationSuccess(false) : setAccountCreationSuccess(true);
+      const response = await networking.createAccount(
+        usernameInput,
+        passwordInput
+      );
+      response.error
+        ? setAccountCreationSuccess(false)
+        : setAccountCreationSuccess(true);
+      setAccountCreationAttempts(accountCreationAttempts + 1);
     }
   }
 
   function displayResponseMessage() {
-    console.log(accountCreationSuccess);
     if (accountCreationAttempts > 0) {
       if (!accountCreationSuccess) {
         return <Alert severity="error">Account could not be created</Alert>;
       } else {
-        setTimeout(() => navigate("/login"), 500);
+        setTimeout(() => navigate("/login"), 1000);
         return <Alert severity="success">Account created</Alert>;
       }
     }
@@ -48,7 +53,7 @@ export default function Signup(props) {
             label="Username"
             variant="outlined"
             value={usernameInput}
-            onChange={e => setUsernameInput(e.target.value)}
+            onChange={(e) => setUsernameInput(e.target.value)}
             style={{
               backgroundColor: "white",
               opacity: "90%",
@@ -64,7 +69,7 @@ export default function Signup(props) {
               type="password"
               variant="outlined"
               value={passwordInput}
-              onChange={e => setPasswordInput(e.target.value)}
+              onChange={(e) => setPasswordInput(e.target.value)}
               style={{
                 backgroundColor: "white",
                 opacity: "90%",
@@ -81,7 +86,7 @@ export default function Signup(props) {
               value={passwordConfirmationInput}
               error={passwordsMatch}
               helperText={passwordsMatch ? "Passwords do not match" : ""}
-              onChange={e => setPasswordConfirmationInput(e.target.value)}
+              onChange={(e) => setPasswordConfirmationInput(e.target.value)}
               style={{
                 backgroundColor: "white",
                 opacity: "90%",
@@ -90,14 +95,22 @@ export default function Signup(props) {
           </div>
         </div>
         <div className="submit-btn">
-          <Button variant="contained" onClick={e => handleSubmit(e)} endIcon={<AccountBoxIcon />}>
+          <Button
+            variant="contained"
+            onClick={(e) => handleSubmit(e)}
+            endIcon={<AccountBoxIcon />}
+          >
             Create account
           </Button>
         </div>
-        <div className="account-creation-success-error-message">{displayResponseMessage()}</div>
+        <div className="account-creation-success-error-message">
+          {displayResponseMessage()}
+        </div>
       </form>
       <div>
-        <a href="https://world-bank-dashboard.netlify.app/login">Already have an account? Login here!</a>
+        <a href="https://world-bank-dashboard.netlify.app/login">
+          Already have an account? Login here!
+        </a>
       </div>
     </div>
   );
