@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import {
   Button,
@@ -26,6 +26,25 @@ export default function Search(props) {
 
   const networking = new Networking();
 
+  useEffect(() => {
+    if (props.historySearch) {
+      handleHistorySearch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function handleHistorySearch() {
+    const sessionID = readCookieValue("sessionID");
+    const data = await networking.searchQuery(
+      props.historySearch.first_country,
+      props.historySearch.indicator,
+      props.historySearch.start_year,
+      props.historySearch.end_year,
+      sessionID
+    );
+    props.acquireResults(data);
+  }
+
   function yearButtons() {
     let years = [];
     for (let i = 1960; i < 2016; i++) {
@@ -45,8 +64,8 @@ export default function Search(props) {
       endYear,
       sessionID
     );
-
     props.acquireResults(data);
+    props.search();
   }
 
   return (

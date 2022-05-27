@@ -26,7 +26,11 @@ export default function HistoryCard(props) {
     <Item>
       <h3>{historyCardText}</h3>
       <h4>Searched on: {created}</h4>
-      <Button variant="contained" onClick={props.handleViewClick}>
+      <Button
+        id={props.index}
+        variant="contained"
+        onClick={(e) => props.handleViewClick(e)}
+      >
         View
       </Button>
     </Item>

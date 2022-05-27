@@ -20,8 +20,8 @@ export default function SearchHistory() {
     return userLoggedIn;
   }
 
-  function handleViewClick() {
-    setTimeout(() => navigate("/"), 250);
+  function handleViewClick(e) {
+    setTimeout(() => navigate("/", { state: searchHistory[e.target.id] }), 250);
   }
 
   useEffect(() => {
@@ -42,6 +42,7 @@ export default function SearchHistory() {
       return (
         <HistoryCard
           key={i}
+          index={i}
           handleViewClick={handleViewClick}
           historyItem={historyItem}
         />
