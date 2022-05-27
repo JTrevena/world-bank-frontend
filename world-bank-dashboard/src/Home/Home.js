@@ -10,6 +10,7 @@ export default function Home(props) {
   const [resultsData, setResultsData] = useState(undefined);
   const [searched, setSearched] = useState(false);
   const { state } = useLocation();
+  console.log(resultsData);
 
   let navigate = useNavigate();
   const networking = new Networking();
@@ -54,7 +55,7 @@ export default function Home(props) {
             search={search}
           />
         </form>
-        {searched && resultsData && (
+        {(searched || state) && resultsData && (
           <h2 className="graph-title">
             {resultsData.length === 0 ? "" : graphTitle()}
           </h2>
