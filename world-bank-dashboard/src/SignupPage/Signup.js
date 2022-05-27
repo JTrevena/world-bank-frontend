@@ -8,8 +8,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 export default function Signup(props) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [passwordConfirmationInput, setPasswordConfirmationInput] =
-    useState("");
+  const [passwordConfirmationInput, setPasswordConfirmationInput] = useState("");
   const [accountCreationAttempts, setAccountCreationAttempts] = useState(0);
   const [accountCreationSuccess, setAccountCreationSuccess] = useState(false);
   let navigate = useNavigate();
@@ -19,13 +18,8 @@ export default function Signup(props) {
   async function handleSubmit(e) {
     setAccountCreationAttempts(accountCreationAttempts + 1);
     if (passwordInput === passwordConfirmationInput) {
-      const response = await networking.createAccount(
-        usernameInput,
-        passwordInput
-      );
-      response.error
-        ? setAccountCreationSuccess(false)
-        : setAccountCreationSuccess(true);
+      const response = await networking.createAccount(usernameInput, passwordInput);
+      response.error ? setAccountCreationSuccess(false) : setAccountCreationSuccess(true);
     }
   }
 
@@ -41,9 +35,11 @@ export default function Signup(props) {
     }
   }
 
+  const passwordsMatch = passwordInput !== passwordConfirmationInput;
+
   return (
     <div className="page-wrapper">
-      <h1 className="page-title">Create an account!</h1>
+      <h1 className="page-title">Create an Account!</h1>
       <form className="signup-form">
         <div className="username-wrapper">
           <TextField
@@ -52,7 +48,7 @@ export default function Signup(props) {
             label="Username"
             variant="outlined"
             value={usernameInput}
-            onChange={(e) => setUsernameInput(e.target.value)}
+            onChange={e => setUsernameInput(e.target.value)}
             style={{
               backgroundColor: "white",
               opacity: "90%",
@@ -68,7 +64,7 @@ export default function Signup(props) {
               type="password"
               variant="outlined"
               value={passwordInput}
-              onChange={(e) => setPasswordInput(e.target.value)}
+              onChange={e => setPasswordInput(e.target.value)}
               style={{
                 backgroundColor: "white",
                 opacity: "90%",
@@ -83,7 +79,9 @@ export default function Signup(props) {
               type="password"
               variant="outlined"
               value={passwordConfirmationInput}
-              onChange={(e) => setPasswordConfirmationInput(e.target.value)}
+              error={passwordsMatch}
+              helperText={passwordsMatch ? "Passwords do not match" : ""}
+              onChange={e => setPasswordConfirmationInput(e.target.value)}
               style={{
                 backgroundColor: "white",
                 opacity: "90%",
@@ -92,17 +90,11 @@ export default function Signup(props) {
           </div>
         </div>
         <div className="submit-btn">
-          <Button
-            variant="contained"
-            onClick={(e) => handleSubmit(e)}
-            endIcon={<AccountBoxIcon />}
-          >
+          <Button variant="contained" onClick={e => handleSubmit(e)} endIcon={<AccountBoxIcon />}>
             Create account
           </Button>
         </div>
-        <div className="account-creation-success-error-message">
-          {displayResponseMessage()}
-        </div>
+        <div className="account-creation-success-error-message">{displayResponseMessage()}</div>
       </form>
     </div>
   );
