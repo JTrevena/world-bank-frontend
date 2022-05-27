@@ -10,6 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import "./Results.css";
 
 export default function Results(props) {
   const [data, setData] = useState(undefined);
@@ -18,8 +19,8 @@ export default function Results(props) {
     setData(props.results);
   }, [props.results]);
 
-  if (!data) return <div>Nothing to see here...</div>;
-  else if (data.length === 0) return <div>No data</div>;
+  if (!data) return <div className="res-message">Nothing to see here...</div>;
+  else if (data.length === 0) return <div className="res-message">No data</div>;
   else if (data.length === 1)
     return (
       <div>

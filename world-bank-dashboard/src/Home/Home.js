@@ -14,11 +14,13 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <div className="search-wrapper">
-        <Search acquireResults={acquireResults} />
-      </div>
-      <div className="results-wrapper">
-        <Results results={resultsData} />
+      <div className="bgd">
+        <form className="search-wrapper">
+          <Search acquireResults={acquireResults} />
+        </form>
+        <div className="results-wrapper">
+          <Results results={resultsData} />
+        </div>
       </div>
     </div>
   );
