@@ -96,6 +96,9 @@ export default function Signup(props) {
         </div>
         <div className="account-creation-success-error-message">{displayResponseMessage()}</div>
       </form>
+      <div>
+        <a href="https://world-bank-dashboard.netlify.app/login">Already have an account? Login here!</a>
+      </div>
     </div>
   );
 }
