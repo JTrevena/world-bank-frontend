@@ -4,16 +4,27 @@
   flex-wrap: wrap;
   align-items: center;
   padding: 0.5%;
-  margin-top: 15%;
+  margin-top: 2%;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 5%;
 }
 
 .title {
-  color: black;
+  color: rgba(253, 248, 236, 1);
+  margin-top: 17.5%;
   text-decoration: underline;
 }
 
 .main-wrapper {
   display: flex;
-  justify-content: center;
+  align-items: center;
   flex-direction: column;
+}
+
+.signup-link {
+  margin-top: 10%;
+}
+
+.error-message {
+  margin-top: 2%;
 }

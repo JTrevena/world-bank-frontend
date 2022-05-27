@@ -107,7 +107,7 @@ export default function Signup(props) {
           {displayResponseMessage()}
         </div>
       </form>
-      <div>
+      <div className="login-link">
         <a href="https://world-bank-dashboard.netlify.app/login">
           Already have an account? Login here!
         </a>

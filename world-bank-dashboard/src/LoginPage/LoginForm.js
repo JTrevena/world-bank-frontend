@@ -16,7 +16,7 @@ export default function LoginForm(props) {
   async function handleSubmitClick() {
     const sessionID = await networking.userLoginAttempt(username, password);
     if (sessionID.error) setError(true);
-    else {
+    else if (sessionID) {
       await logUserIn(sessionID);
       navigate("/");
     }
@@ -33,8 +33,8 @@ export default function LoginForm(props) {
 
   return (
     <div className="main-wrapper">
+      <h1 className="title">Sign in to World Bank</h1>
       <form className="login-user">
-        <h1 className="title">Sign in to World Bank</h1>
         <div className="username-wrapper">
           <TextField
             id="outlined-basic"
@@ -68,8 +68,13 @@ export default function LoginForm(props) {
             Sign In
           </Button>
         </div>
+        <div className="error-message">{displayError()}</div>
       </form>
-      <div className="error-message">{displayError()}</div>
+      <div className="signup-link">
+        <a href="https://world-bank-dashboard.netlify.app/sign-up">
+          Don't have an account yet? Sign up here!
+        </a>
+      </div>
     </div>
   );
 }
