@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { useNavigate } from "react-router-dom";
 import Networking from "./Networking.js";
+import "./Header.css";
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -50,160 +51,165 @@ function Header() {
   }
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AccountBalanceIcon
-            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            WORLD BANK
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+    <div className="header-wrapper">
+      <AppBar position="static">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <AccountBalanceIcon
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
               sx={{
-                display: { xs: "block", md: "none" },
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
               }}
             >
-              <MenuItem
+              WORLD BANK
+            </Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                <MenuItem
+                  key={"Search"}
+                  onClick={(e) => {
+                    handleCloseNavMenu();
+                    handleSearchButtonClick();
+                  }}
+                >
+                  <Typography textAlign="center">{"Search"}</Typography>
+                </MenuItem>
+                <MenuItem
+                  key={"History"}
+                  onClick={(e) => {
+                    handleCloseNavMenu();
+                    handleHistoryButtonClick();
+                  }}
+                >
+                  <Typography textAlign="center">{"History"}</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+            <AccountBalanceIcon
+              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+            />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              World Bank
+            </Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              <Button
                 key={"Search"}
                 onClick={(e) => {
                   handleCloseNavMenu();
                   handleSearchButtonClick();
                 }}
+                sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Typography textAlign="center">{"Search"}</Typography>
-              </MenuItem>
-              <MenuItem
+                {"Search"}
+              </Button>
+              <Button
                 key={"History"}
                 onClick={(e) => {
                   handleCloseNavMenu();
                   handleHistoryButtonClick();
                 }}
+                sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Typography textAlign="center">{"History"}</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
-          <AccountBalanceIcon
-            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-          />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            World Bank
-          </Typography>
+                {"History"}
+              </Button>
+            </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Button
-              key={"Search"}
-              onClick={(e) => {
-                handleCloseNavMenu();
-                handleSearchButtonClick();
-              }}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              {"Search"}
-            </Button>
-            <Button
-              key={"History"}
-              onClick={(e) => {
-                handleCloseNavMenu();
-                handleHistoryButtonClick();
-              }}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              {"History"}
-            </Button>
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={`${username}`} src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem
-                key={"logout"}
-                onClick={(e) => {
-                  handleCloseUserMenu();
-                  handleUserLogout();
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar
+                    alt={`${username}`}
+                    src="/static/images/avatar/2.jpg"
+                  />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
                 }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
               >
-                <Typography textAlign="center">logout</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+                <MenuItem
+                  key={"logout"}
+                  onClick={(e) => {
+                    handleCloseUserMenu();
+                    handleUserLogout();
+                  }}
+                >
+                  <Typography textAlign="center">logout</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </div>
   );
 }
 export default Header;
