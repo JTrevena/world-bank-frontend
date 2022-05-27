@@ -29,11 +29,11 @@ export default function SearchHistory() {
       await fetchData();
     }
     fetchingData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function fetchData() {
     const history = (await networking.getUserHistory()).response;
-    console.log(history);
     setSearchHistory(history);
   }
 

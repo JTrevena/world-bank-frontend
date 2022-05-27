@@ -88,7 +88,6 @@ export default class Networking {
 
   async getUserHistory() {
     const sessionID = readCookieValue("sessionID");
-    console.log(sessionID);
     let response = await fetch(
       `https://safe-harbor-88927.herokuapp.com/history?sessionID=${sessionID}`
     );
