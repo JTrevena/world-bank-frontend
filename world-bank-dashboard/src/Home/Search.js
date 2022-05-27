@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import "./Home.css";
-import {
-  Button,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Autocomplete,
-} from "@mui/material";
+import { Button, TextField, FormControl, InputLabel, Select, MenuItem, Autocomplete } from "@mui/material";
 import Networking from "../Networking";
 import indicators from "../data/indicators.json";
 import countries from "../data/countries.json";
 import "./Search.css";
 import readCookieValue from "../readCookieValue.js";
 import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
 
 export default function Search(props) {
   const [startYear, setStartYear] = useState("");
@@ -31,9 +24,16 @@ export default function Search(props) {
     for (let i = 1960; i < 2016; i++) {
       years.unshift(i);
     }
-    return years.map((year) => {
+    return years.map(year => {
       return <MenuItem value={String(year)}>{String(year)}</MenuItem>;
     });
+  }
+
+  async function handleClear() {
+    setCountry("");
+    setIndicator("");
+    setStartYear("");
+    setEndYear("");
   }
 
   async function handleSearch() {
@@ -57,13 +57,13 @@ export default function Search(props) {
             disablePortal
             id="country-select"
             options={countryOptions}
-            getOptionLabel={(option) => option.countryname || [""]}
+            getOptionLabel={option => option.countryname || [""]}
             value={country}
             onChange={(e, newInputValue) => {
               setCountry(newInputValue);
             }}
             sx={{ width: 300 }}
-            renderInput={(params) => (
+            renderInput={params => (
               <TextField
                 {...params}
                 label="Country"
@@ -81,13 +81,13 @@ export default function Search(props) {
             disablePortal
             id="indicator-select"
             options={indicatorOptions}
-            getOptionLabel={(option) => option.indicatorname || [""]}
+            getOptionLabel={option => option.indicatorname || [""]}
             value={indicator}
             onChange={(e, newInputValue) => {
               setIndicator(newInputValue);
             }}
             sx={{ width: 300 }}
-            renderInput={(params) => (
+            renderInput={params => (
               <TextField
                 {...params}
                 label="Indicator"
@@ -107,7 +107,7 @@ export default function Search(props) {
               labelId="start-year"
               id="start-year"
               label="Year"
-              onChange={(e) => setStartYear(e.target.value)}
+              onChange={e => setStartYear(e.target.value)}
               defaultValue=""
               style={{
                 backgroundColor: "white",
@@ -125,7 +125,7 @@ export default function Search(props) {
               labelId="end-year"
               id="end-year"
               label="Year"
-              onChange={(e) => setEndYear(e.target.value)}
+              onChange={e => setEndYear(e.target.value)}
               defaultValue=""
               style={{
                 backgroundColor: "white",
@@ -136,13 +136,14 @@ export default function Search(props) {
             </Select>
           </FormControl>
         </div>
+        <div className="clear-btn">
+          <Button variant="contained" onClick={handleClear} endIcon={<ClearIcon />}>
+            Clear
+          </Button>
+        </div>
       </div>
       <div className="search-form-btn">
-        <Button
-          variant="contained"
-          onClick={handleSearch}
-          endIcon={<SearchIcon />}
-        >
+        <Button variant="contained" onClick={handleSearch} endIcon={<SearchIcon />}>
           Search
         </Button>
       </div>

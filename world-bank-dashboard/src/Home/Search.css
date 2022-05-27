@@ -17,3 +17,13 @@
   padding: 0.5%;
   margin-top: 5%;
 }
+
+.clear-btn {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  width: fit-content;
+  padding: 0.5%;
+  margin-top: 0%;
+}
