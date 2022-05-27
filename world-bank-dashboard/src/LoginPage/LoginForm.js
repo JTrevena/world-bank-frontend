@@ -40,7 +40,7 @@ export default function LoginForm(props) {
             id="outlined-basic"
             label="Username"
             variant="outlined"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
             style={{
               backgroundColor: "white",
               opacity: "90%",
@@ -52,7 +52,8 @@ export default function LoginForm(props) {
             id="outlined-basic"
             label="Password"
             variant="outlined"
-            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            onChange={e => setPassword(e.target.value)}
             style={{
               backgroundColor: "white",
               opacity: "90%",
@@ -60,20 +61,14 @@ export default function LoginForm(props) {
           />
         </div>
         <div className="btn-wrapper">
-          <Button
-            variant="contained"
-            onClick={handleSubmitClick}
-            endIcon={<AccountBalanceIcon />}
-          >
+          <Button variant="contained" onClick={handleSubmitClick} endIcon={<AccountBalanceIcon />}>
             Sign In
           </Button>
         </div>
         <div className="error-message">{displayError()}</div>
       </form>
       <div className="signup-link">
-        <a href="https://world-bank-dashboard.netlify.app/sign-up">
-          Don't have an account yet? Sign up here!
-        </a>
+        <a href="https://world-bank-dashboard.netlify.app/sign-up">Don't have an account yet? Sign up here!</a>
       </div>
     </div>
   );
