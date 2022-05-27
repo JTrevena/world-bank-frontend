@@ -39,7 +39,8 @@ function Header() {
   };
 
   async function handleUserLogout() {
-    await networking.logUserOut();
+    const response = await networking.logUserOut();
+    if (response.response) navigate("/login", 250);
   }
 
   function handleSearchButtonClick() {
